@@ -9,7 +9,14 @@ package edu.ucaldas.behavior;
 
 public class SupportHandler {
     public static Handler createChain() {
-        // TODO: crea la cadena: Basic → Supervisor → Manager
-        return null;
+        // crea la cadena: Basic → Supervisor → Manager
+        Handler basic = new BasicSupportHandler();
+        Handler supervisor = new SupervisorHandler();
+        Handler manager = new ManagerHandler();
+
+        basic.setNext(supervisor);
+        supervisor.setNext(manager);
+
+        return basic;
     }
 }
